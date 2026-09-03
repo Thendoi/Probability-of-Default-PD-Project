@@ -1,10 +1,18 @@
 # Probability-of-Default-PD-Project
 
-This project develops machine learning models to estimate the Probability of Default (PD) for consumer loans.  
+## Overview
+
+This project predicts credit card default risk using machine learning models and turns model probabilities into business-oriented credit risk decisions.
 
 The objective is to predict whether a borrower will default on a loan using demographic, employment and loan-related characteristics.
 
+The main goal is not only to classify customers as default / non-default, but also to:
 
+compare several machine learning models,
+estimate reliable default probabilities,
+select a cost-sensitive decision threshold,
+explain model predictions using SHAP,
+translate model results into practical credit risk recommendations.
 
 ## Dataset
 
