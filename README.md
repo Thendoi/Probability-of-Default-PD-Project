@@ -18,6 +18,11 @@ translate model results into practical credit risk recommendations.
 
 The dataset contains:
 
+Borrower demographics (Age, Income, Employment, etc.)
+Loan details (Loan Amount, Interest Rate, Loan Term, etc.)
+Other relevant variables (Education, Loan Purpose, Marital Status, etc.)
+
+
 | Variable | Description |
 |-----------|-------------|
 | person_age | Age of borrower |
