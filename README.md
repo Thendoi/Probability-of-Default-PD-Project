@@ -99,18 +99,6 @@ I haven't done these yet, but they're the natural next steps if I keep working o
 - Build a small Streamlit app so someone could try scoring a new applicant without touching the notebook
 - Test on a more recent, out-of-time sample before I'd trust this in production
 
-## Tech stack
-
-Python, pandas, NumPy, scikit-learn, XGBoost, imbalanced-learn (SMOTE), matplotlib, seaborn, Jupyter
-
-## Running it
-
-```bash
-git clone https://github.com/<your-username>/Probability-of-Default-PD-Project.git
-cd Probability-of-Default-PD-Project
-pip install -r requirements.txt
-jupyter notebook notebooks/Credit_Risk_PD_Model.ipynb
-```
 
 ## Where it could be used
 
@@ -118,4 +106,3 @@ Credit scoring, loan approval decisions, risk-based pricing, capital/provisionin
 
 ---
 
-**Isaiah Mposhomali** — [LinkedIn](#) · [GitHub](#)
