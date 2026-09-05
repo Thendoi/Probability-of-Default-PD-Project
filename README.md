@@ -99,10 +99,3 @@ I haven't done these yet, but they're the natural next steps if I keep working o
 - Build a small Streamlit app so someone could try scoring a new applicant without touching the notebook
 - Test on a more recent, out-of-time sample before I'd trust this in production
 
-
-## Where it could be used
-
-Credit scoring, loan approval decisions, risk-based pricing, capital/provisioning estimates, and portfolio monitoring — basically anywhere a lender needs more than a gut feel about who's likely to pay back a loan.
-
----
-
