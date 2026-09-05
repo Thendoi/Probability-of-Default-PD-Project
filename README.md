@@ -1,117 +1,121 @@
-# Probability-of-Default-PD-Project
+# Probability of Default (PD) Model
 
-## Overview
+I built this project to predict whether a borrower will default on a loan, and  more importantly  to turn that prediction into something a lender could actually use to make a decision.
 
-This project predicts credit card default risk using machine learning models and turns model probabilities into business-oriented credit risk decisions.
+## Why this matters
 
-The objective is to predict whether a borrower will default on a loan using demographic, employment and loan-related characteristics.
+Every time a lender approves or declines a loan, they're making a bet. Approve a bad loan and you lose money. Decline a good borrower and you lose a customer. Most of the time that decision gets made on gut feel or a rigid rule ("no one under 650 credit score"), which either misses good customers or lets in risky ones.
 
-The main goal is not only to classify customers as default / non-default, but also to:
+A PD model doesn't remove that trade-off, but it makes it explicit: instead of yes/no, you get "this applicant has an 8% chance of defaulting." That number can drive risk-based pricing, approval cut-offs, provisioning estimates, or just flagging accounts worth a second look — which is a lot more useful than a coin flip.
 
-compare several machine learning models,
-estimate reliable default probabilities,
-select a cost-sensitive decision threshold,
-explain model predictions using SHAP,
-translate model results into practical credit risk recommendations.
+## What's in this project
 
-## Dataset
+I trained and compared three models on ~32,500 loan applications: Logistic Regression, Random Forest, and XGBoost. Along the way I tried to do a few things properly that a lot of tutorial-style projects skip:
 
-The dataset contains:
+- **Fixed a data leakage issue.** The naive approach is to balance the classes with SMOTE and *then* split into train/test. That lets synthetic training rows leak into the test set and makes your accuracy look better than it really is. I split first, then balanced only the training data.
+- **Kept `loan_grade` instead of dropping it.** It's an ordinal risk grade (A through G), and it turned out to be one of the strongest predictors — throwing it away would've cost real signal.
+- **Evaluated it the way a credit risk person actually would**, not just accuracy. Confusion matrices, ROC/AUC, and the KS statistic (the standard way to measure how well a scorecard separates good and bad borrowers).
+- **Checked that the model actually ranks risk**, using a risk-decile breakdown — because a model that's 90% accurate but can't tell your safest customers from your riskiest ones isn't actually useful.
 
-Borrower demographics (Age, Income, Employment, etc.)
+## The dataset
 
-Loan details (Loan Amount, Interest Rate, Loan Term, etc.)
-
-Other relevant variables (Education, Loan Purpose, Marital Status, etc.)
-
+Loan applications with borrower demographics, employment info, and loan details:
 
 | Variable | Description |
 |-----------|-------------|
-| person_age | Age of borrower |
-| person_income | Annual income |
-| person_home_ownership | Home ownership status |
-| person_emp_length | Years employed |
-| loan_intent | Purpose of loan |
-| loan_grade | Loan risk grade |
-| loan_amnt | Loan amount |
-| loan_int_rate | Interest rate |
-| loan_status | Default indicator (Target) |
-| loan_percent_income | Debt-to-income ratio |
-| cb_person_default_on_file | Previous default history |
-| cb_person_cred_hist_length | Credit history length |
+| `person_age` | Age of borrower |
+| `person_income` | Annual income |
+| `person_home_ownership` | Home ownership status |
+| `person_emp_length` | Years employed |
+| `loan_intent` | Purpose of loan |
+| `loan_grade` | Loan risk grade (A–G) |
+| `loan_amnt` | Loan amount |
+| `loan_int_rate` | Interest rate |
+| `loan_status` | Target — 1 = default, 0 = repaid |
+| `loan_percent_income` | Debt-to-income ratio |
+| `cb_person_default_on_file` | Previous default history |
+| `cb_person_cred_hist_length` | Credit history length |
 
-## Workflow
+## How I got there
 
-### 1. Data Exploration
+1. **Explored the data** — checked distributions, missing values, and found the target is imbalanced (about 22% default rate).
+2. **Cleaned it** — removed a handful of rows with impossible ages and employment lengths, imputed missing interest rates with the median.
+3. **Encoded features** — kept `loan_grade` as an ordinal number, one-hot encoded the nominal categories (home ownership, loan intent).
+4. **Split before balancing** — train/test split first, then SMOTE on the training set only.
+5. **Trained three models** — Logistic Regression as an interpretable baseline, then Random Forest and XGBoost to see how much non-linear patterns actually help.
+6. **Evaluated properly** — confusion matrix, ROC/AUC, KS statistic, and a risk-decile gains chart.
 
-- Examine data types
-- Review summary statistics
-- Identify missing values
-- Detect duplicate records
-- Investigate variable distributions
+## Results
 
-### 2. Data Cleaning
+| Model | Accuracy | Precision | Recall | F1 | AUC | KS |
+|---|---|---|---|---|---|---|
+| Logistic Regression | 0.804 | 0.532 | 0.780 | 0.633 | 0.867 | 0.592 |
+| Random Forest | 0.932 | 0.924 | 0.744 | 0.825 | 0.938 | 0.738 |
+| XGBoost | 0.936 | 0.942 | 0.752 | 0.836 | 0.947 | 0.761 |
 
-- Remove unrealistic ages
-- Remove unrealistic employment lengths
-- Handle missing values
-- Remove duplicate observations
+XGBoost came out on top, with a KS of 0.76 — a KS above roughly 0.4 is generally considered solid for a credit scorecard, so this is a strong result.
 
-### 3. Feature Engineering
+The part I actually care about more than the metrics table, though, is whether the model ranks risk sensibly. So I split the test set into 10 deciles by predicted probability and looked at the actual default rate in each:
 
-Categorical variables are transformed using one-hot encoding.
+| Decile | Actual default rate |
+|---|---|
+| 1 (safest) | 0.0% |
+| 2 | 0.8% |
+| 3 | 1.7% |
+| 4 | 3.7% |
+| 5 | 4.1% |
+| 6 | 6.2% |
+| 7 | 12.2% |
+| 8 | 16.5% |
+| 9 | 70.6% |
+| 10 (riskiest) | 100.0% |
 
-### 4. Model Development
+That jump at decile 9 and 10 is the interesting part. It means declining just the riskiest 10% of applicants would catch the large majority of expected defaults while barely affecting the other 90% of approvals — which is the kind of trade-off a credit team can actually act on, not just a number on a slide.
 
-Two models are developed:
+### What a prediction looks like in practice
 
-#### Logistic Regression
+$$PD = P(\text{Default} = 1)$$
 
-Advantages:
+| Borrower | Predicted PD | Risk tier |
+|-----------|-------------|-----------|
+| Customer A | 2.3% | Low |
+| Customer B | 12.8% | Medium |
+| Customer C | 45.6% | High |
 
-- Interpretable
-- Fast
-- Common benchmark model
+## What I learned / noticed
 
-#### XGBoost
+- `loan_grade`, `loan_percent_income`, and `loan_int_rate` were consistently the top predictors across all three models — which matches what you'd expect from credit risk fundamentals, and is a nice sanity check that the model isn't picking up on noise.
+- The tree-based models beat Logistic Regression on ranking power, mostly because they pick up on interactions (e.g. how income and loan amount together affect risk) that a linear model can't.
+- Logistic Regression still has a place though — not because it wins on the numbers, but because you can read off exactly why it made a decision, which matters a lot if you ever need to explain a decline to a regulator or a customer.
 
-Advantages:
+## Where this could go next
 
-- Captures nonlinear relationships
-- Handles complex interactions
-- Often provides better predictive accuracy
+I haven't done these yet, but they're the natural next steps if I keep working on this:
 
-### 5. Model Evaluation
+- Add SHAP so individual predictions can be explained row-by-row (useful for adverse-action notices)
+- Pick a decision threshold based on actual cost of a false positive vs. false negative, instead of just optimizing F1
+- Calibrate the probabilities properly if they're going to be used for pricing, not just ranking
+- Tune hyperparameters on Random Forest and XGBoost rather than using defaults
+- Build a small Streamlit app so someone could try scoring a new applicant without touching the notebook
+- Test on a more recent, out-of-time sample before I'd trust this in production
 
-Models are evaluated using:
+## Tech stack
 
-- Accuracy
-- Confusion Matrix
-- Classification Report
-- ROC AUC
+Python, pandas, NumPy, scikit-learn, XGBoost, imbalanced-learn (SMOTE), matplotlib, seaborn, Jupyter
 
-### 6. Probability of Default (PD)
+## Running it
 
-The final model produces an estimated default probability:
+```bash
+git clone https://github.com/<your-username>/Probability-of-Default-PD-Project.git
+cd Probability-of-Default-PD-Project
+pip install -r requirements.txt
+jupyter notebook notebooks/Credit_Risk_PD_Model.ipynb
+```
 
-\[
-PD = P(Default = 1)
-\]
+## Where it could be used
 
-Example:
+Credit scoring, loan approval decisions, risk-based pricing, capital/provisioning estimates, and portfolio monitoring — basically anywhere a lender needs more than a gut feel about who's likely to pay back a loan.
 
-| Borrower | Predicted PD |
-|-----------|-------------|
-| Customer A | 2.3% |
-| Customer B | 12.8% |
-| Customer C | 45.6% |
+---
 
-Higher PD values indicate higher credit risk.
-
-## Applications
-
-- Credit scoring
-- Loan approvals
-- Risk-based pricing
-- Capital modelling
-- Portfolio risk management
+**Isaiah Mposhomali** — [LinkedIn](#) · [GitHub](#)
