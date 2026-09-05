@@ -10,7 +10,7 @@ A PD model doesn't remove that trade-off, but it makes it explicit: instead of y
 
 ## What's in this project
 
-I trained and compared three models on ~32,500 loan applications: Logistic Regression, Random Forest, and XGBoost. Along the way I tried to do a few things properly that a lot of tutorial-style projects skip:
+I trained and compared three models on ~32,500 loan applications: Logistic Regression, Random Forest, and XGBoost. 
 
 - **Fixed a data leakage issue.** The naive approach is to balance the classes with SMOTE and *then* split into train/test. That lets synthetic training rows leak into the test set and makes your accuracy look better than it really is. I split first, then balanced only the training data.
 - **Kept `loan_grade` instead of dropping it.** It's an ordinal risk grade (A through G), and it turned out to be one of the strongest predictors — throwing it away would've cost real signal.
