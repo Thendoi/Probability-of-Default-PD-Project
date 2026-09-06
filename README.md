@@ -41,11 +41,6 @@ By converting borrower characteristics into an estimated **Probability of Defaul
 
 
 
-## Why this matters
-
-Every time a lender approves or declines a loan, they're making a bet. Approve a bad loan and you lose money. Decline a good borrower and you lose a customer. Most of the time that decision gets made on gut feel or a rigid rule ("no one under 650 credit score"), which either misses good customers or lets in risky ones.
-
-A PD model doesn't remove that trade-off, but it makes it explicit: instead of yes/no, you get "this applicant has an 8% chance of defaulting." That number can drive risk-based pricing, approval cut-offs, provisioning estimates, or just flagging accounts worth a second look — which is a lot more useful than a coin flip.
 
 ## What's in this project
 
