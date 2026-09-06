@@ -10,19 +10,6 @@ The project focuses not only on predicting default but also on understanding whe
 
 The project follows a practical credit risk modelling workflow, including data preparation, class imbalance treatment, model development, model evaluation, and risk segmentation.
 
-Key components of the project include:
-
-- Data cleaning and preprocessing
-- Handling class imbalance using **SMOTE**
-- Preventing data leakage by splitting the data before applying SMOTE
-- Feature analysis and selection
-- Retaining `loan_grade` as an important ordinal risk predictor
-- Development and comparison of **Logistic Regression, Random Forest, and XGBoost**
-- Model evaluation using **ROC/AUC, confusion matrices, and the KS statistic**
-- Risk ranking using **risk-decile analysis**
-- Translating PD predictions into practical lending decisions
-
-The project demonstrates how a machine learning-based PD model can move beyond a simple default prediction and provide a framework for **data-driven credit risk management**.
 
 ## Business Problem:
 
