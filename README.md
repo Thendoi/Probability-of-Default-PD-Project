@@ -1,5 +1,59 @@
 # Probability of Default (PD) Model
 
+## Project Overview:
+
+This project develops an end-to-end **Probability of Default (PD) modelling framework** to predict whether a borrower is likely to default on a loan and, more importantly, translate those predictions into actionable lending decisions.
+
+Using approximately **32,500 loan applications**, the project trains and compares three machine learning models: **Logistic Regression, Random Forest, and XGBoost**.
+
+The project focuses not only on predicting default but also on understanding whether the models can effectively **rank borrowers according to their level of credit risk**. This is particularly important in real-world lending, where risk ranking can support approval decisions, risk-based pricing, portfolio monitoring, and provisioning.
+
+The project follows a practical credit risk modelling workflow, including data preparation, class imbalance treatment, model development, model evaluation, and risk segmentation.
+
+Key components of the project include:
+
+- Data cleaning and preprocessing
+- Handling class imbalance using **SMOTE**
+- Preventing data leakage by splitting the data before applying SMOTE
+- Feature analysis and selection
+- Retaining `loan_grade` as an important ordinal risk predictor
+- Development and comparison of **Logistic Regression, Random Forest, and XGBoost**
+- Model evaluation using **ROC/AUC, confusion matrices, and the KS statistic**
+- Risk ranking using **risk-decile analysis**
+- Translating PD predictions into practical lending decisions
+
+The project demonstrates how a machine learning-based PD model can move beyond a simple default prediction and provide a framework for **data-driven credit risk management**.
+
+## Business Problem:
+
+Lenders face a fundamental trade-off when approving loans. Approving a high-risk borrower can result in financial losses, while declining a low-risk borrower can result in lost business opportunities.
+
+Traditional lending decisions may rely on fixed rules or credit score thresholds, which can fail to capture the full range of borrower risk.
+
+A Probability of Default model makes this risk more explicit by estimating the likelihood that a borrower will default. For example, instead of making a simple approve/decline decision, a lender could estimate that an applicant has an **8% probability of default** and use that information to support a more informed decision.
+
+The primary objectives of this project are:
+
+- Predict the probability that a borrower will default
+- Identify important drivers of credit risk
+- Rank borrowers according to their level of default risk
+- Segment borrowers into different risk categories
+- Support data-driven underwriting decisions
+- Enable risk-based pricing and approval cut-offs
+- Identify high-risk borrowers for additional review
+- Support portfolio risk management
+- Provide inputs that can support provisioning and expected credit loss analysis
+
+By converting borrower characteristics into an estimated **Probability of Default**, lenders can make more consistent and risk-sensitive decisions while balancing **credit risk, customer growth, and profitability**.
+
+
+
+
+
+
+
+
+
 I built this project to predict whether a borrower will default on a loan, and  more importantly  to turn that prediction into something a lender could actually use to make a decision.
 
 ## Why this matters
