@@ -116,7 +116,7 @@ $$PD = P(\text{Default} = 1)$$
 | Customer B | 12.8% | Medium |
 | Customer C | 45.6% | High |
 
-## What I learned / noticed
+## What I learned
 
 - `loan_grade`, `loan_percent_income`, and `loan_int_rate` were consistently the top predictors across all three models — which matches what you'd expect from credit risk fundamentals, and is a nice sanity check that the model isn't picking up on noise.
 - The tree-based models beat Logistic Regression on ranking power, mostly because they pick up on interactions (e.g. how income and loan amount together affect risk) that a linear model can't.
