@@ -98,8 +98,6 @@ The models were evaluated using credit-risk-focused performance measures:
 - KS Statistic
 - Confusion Matrix
 
-The evaluation focused not only on predictive accuracy but also on the model's ability to **discriminate between good and bad borrowers and rank borrowers according to their level of default risk**.
-
 ## Model Performance
 
 | **Model** | **Accuracy** | **Precision** | **Recall** | **F1** | **ROC-AUC** | **KS** |
