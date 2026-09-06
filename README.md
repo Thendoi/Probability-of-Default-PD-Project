@@ -50,8 +50,6 @@ Loan applications with borrower demographics, employment info, and loan details:
 
 - Dataset inspection
 - Target variable analysis
-- Distribution analysis
-- Missing value assessment
 - Data type review
 - Class imbalance evaluation
 
