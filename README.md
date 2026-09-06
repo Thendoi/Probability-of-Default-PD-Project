@@ -10,7 +10,6 @@ The project focuses not only on predicting default but also on understanding whe
 
 The project follows a practical credit risk modelling workflow, including data preparation, class imbalance treatment, model development, model evaluation, and risk segmentation.
 
-
 ## Business Problem:
 
 Lenders face a fundamental trade-off when approving loans. Approving a high-risk borrower can result in financial losses, while declining a low-risk borrower can result in lost business opportunities.
@@ -51,7 +50,6 @@ Loan applications with borrower demographics, employment info, and loan details:
 | `loan_percent_income` | Debt-to-income ratio |
 | `cb_person_default_on_file` | Previous default history |
 | `cb_person_cred_hist_length` | Credit history length |
-
 
 ## Project Methodology
 
@@ -129,15 +127,6 @@ The models were evaluated using credit-risk-focused performance measures:
 ### Best Performing Model
 
 **XGBoost**
-
-Key performance metrics:
-
-- Accuracy: **93.6%**
-- Precision: **94.2%**
-- Recall: **75.2%**
-- F1 Score: **83.6%**
-- ROC-AUC: **94.7%**
-- KS: **0.761**
 
 XGBoost delivered the strongest overall performance, achieving the highest **ROC-AUC and KS statistic** while maintaining a strong balance between precision and recall.
 
