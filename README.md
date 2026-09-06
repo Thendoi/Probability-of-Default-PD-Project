@@ -41,8 +41,6 @@ By converting borrower characteristics into an estimated **Probability of Defaul
 
 
 
-I built this project to predict whether a borrower will default on a loan, and  more importantly  to turn that prediction into something a lender could actually use to make a decision.
-
 ## Why this matters
 
 Every time a lender approves or declines a loan, they're making a bet. Approve a bad loan and you lose money. Decline a good borrower and you lose a customer. Most of the time that decision gets made on gut feel or a rigid rule ("no one under 650 credit score"), which either misses good customers or lets in risky ones.
