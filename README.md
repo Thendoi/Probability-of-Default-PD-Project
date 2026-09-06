@@ -4,9 +4,7 @@
 
 This project develops an end-to-end **Probability of Default (PD) modelling framework** to predict whether a borrower is likely to default on a loan and, more importantly, translate those predictions into actionable lending decisions.
 
-Using approximately **32,500 loan applications**, the project trains and compares three machine learning models: **Logistic Regression, Random Forest, and XGBoost**.
-
-The project focuses not only on predicting default but also on understanding whether the models can effectively **rank borrowers according to their level of credit risk**. This is particularly important in real-world lending, where risk ranking can support approval decisions, risk-based pricing, portfolio monitoring, and provisioning.
+Using approximately **32,500 loan applications**, the project focuses not only on predicting default but also on understanding whether the models can effectively **rank borrowers according to their level of credit risk**. This is particularly important in real-world lending, where risk ranking can support approval decisions, risk-based pricing, portfolio monitoring, and provisioning.
 
 The project follows a practical credit risk modelling workflow, including data preparation, class imbalance treatment, model development, model evaluation, and risk segmentation.
 
