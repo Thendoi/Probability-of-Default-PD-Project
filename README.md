@@ -33,6 +33,26 @@ The primary objectives of this project are:
 
 By converting borrower characteristics into an estimated **Probability of Default**, lenders can make more consistent and risk-sensitive decisions while balancing **credit risk, customer growth, and profitability**.
 
+## The dataset
+ 
+Loan applications with borrower demographics, employment info, and loan details:
+ 
+| Variable | Description |
+|-----------|-------------|
+| `person_age` | Age of borrower |
+| `person_income` | Annual income |
+| `person_home_ownership` | Home ownership status |
+| `person_emp_length` | Years employed |
+| `loan_intent` | Purpose of loan |
+| `loan_grade` | Loan risk grade (A–G) |
+| `loan_amnt` | Loan amount |
+| `loan_int_rate` | Interest rate |
+| `loan_status` | Target — 1 = default, 0 = repaid |
+| `loan_percent_income` | Debt-to-income ratio |
+| `cb_person_default_on_file` | Previous default history |
+| `cb_person_cred_hist_length` | Credit history length |
+
+
 ## Project Methodology
 
 ### Phase 1: Data Understanding
