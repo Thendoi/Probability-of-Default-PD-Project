@@ -225,8 +225,6 @@ The final decision threshold should ultimately be determined using the **economi
 - Credit risk models should be evaluated on **discrimination and ranking**, not accuracy alone.
 - Applying SMOTE before the train/test split can introduce **data leakage** and produce misleading performance.
 - `loan_grade`, `loan_percent_income`, and `loan_int_rate` provided strong and economically intuitive signals of default risk.
-- XGBoost captured non-linear relationships and interactions that Logistic Regression could not capture as effectively.
-- Logistic Regression remains valuable where **interpretability and transparency** are important.
 - Risk-decile analysis provides a practical way to determine whether a model can meaningfully separate low-risk and high-risk borrowers.
 
 ## Limitation or recommendations
