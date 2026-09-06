@@ -22,11 +22,6 @@ The primary objectives of this project are:
 - Identify important drivers of credit risk
 - Rank borrowers according to their level of default risk
 - Segment borrowers into different risk categories
-- Support data-driven underwriting decisions
-- Enable risk-based pricing and approval cut-offs
-- Identify high-risk borrowers for additional review
-- Support portfolio risk management
-- Provide inputs that can support provisioning and expected credit loss analysis
 
 By converting borrower characteristics into an estimated **Probability of Default**, lenders can make more consistent and risk-sensitive decisions while balancing **credit risk, customer growth, and profitability**.
 
