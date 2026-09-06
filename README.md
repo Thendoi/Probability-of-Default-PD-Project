@@ -97,17 +97,7 @@ Logistic Regression was used as an **interpretable baseline**, while Random Fore
 
 ### Phase 6: Model Evaluation
 
-The models were evaluated using credit-risk-focused performance measures:
-
-- Accuracy
-- Precision
-- Recall
-- F1 Score
-- ROC-AUC
-- KS Statistic
-- Confusion Matrix
-
-## Model Performance
+# Model Performance
 
 | **Model** | **Accuracy** | **Precision** | **Recall** | **F1** | **ROC-AUC** | **KS** |
 |-----------|--------------|---------------|------------|--------|-------------|--------|
