@@ -10,9 +10,7 @@ Using approximately **32,500 loan applications**, the project focuses not only o
 
 Lenders face a fundamental trade-off when approving loans. Approving a high-risk borrower can result in financial losses, while declining a low-risk borrower can result in lost business opportunities.
 
-Traditional lending decisions may rely on fixed rules or credit score thresholds, which can fail to capture the full range of borrower risk.
-
-A Probability of Default model makes this risk more explicit by estimating the likelihood that a borrower will default. For example, instead of making a simple approve/decline decision, a lender could estimate that an applicant has an **8% probability of default** and use that information to support a more informed decision.
+For example, instead of making a simple approve/decline decision, a lender could estimate that an applicant has an **8% probability of default** and use that information to support a more informed decision.
 
 The primary objectives of this project are:
 
