@@ -6,8 +6,6 @@ This project develops an end-to-end **Probability of Default (PD) modelling fram
 
 Using approximately **32,500 loan applications**, the project focuses not only on predicting default but also on understanding whether the models can effectively **rank borrowers according to their level of credit risk**.
 
-The project follows a practical credit risk modelling workflow, including data preparation, class imbalance treatment, model development, model evaluation, and risk segmentation.
-
 ## Business Problem:
 
 Lenders face a fundamental trade-off when approving loans. Approving a high-risk borrower can result in financial losses, while declining a low-risk borrower can result in lost business opportunities.
